@@ -1,13 +1,13 @@
-name: Custom Vanilla Desktop # Replace this name with your image name
-id: custom # Replace this ID with your image ID
+name: Custom Vanilla Desktop
+id: nvbrimg
 stages:
 - id: build
-  base: ghcr.io/vanilla-os/desktop:main # Optionally, Replace this image URL with a different one i.e. nvidia:main, etc
+  base: ghcr.io/vanilla-os/desktop:main
   singlelayer: false
   labels:
-    maintainer: self-maintained # Optionally, Replace this with your name
+    maintainer: self-maintained
   args:
-    DEBIAN_FRONTEND: noninteractive # Set the image environment as non-interactive
+    DEBIAN_FRONTEND: noninteractive
   
   # Commands to run first before building the modules
   runs:
@@ -23,16 +23,11 @@ stages:
 
   # Put your custom actions behind this comment
 
-  - name: example-packages # Sample module using the built-in Apt module to install packages
-    type: apt
-    source:
-      packages:
-      - vim
-
-  - name: example-commands # Sample module demonstrating the Shell module with custom commands
-    type: shell
-    commands:
-    - echo Example output
+  - name: tailscale-modules
+    type: includes
+    includes:
+      - modules/05-tailscale-repo.yml
+      - modules/06-tailscale.yml
 
   - name: example-modules # Sample module demonstrating importing local and remote modules
     type: includes
