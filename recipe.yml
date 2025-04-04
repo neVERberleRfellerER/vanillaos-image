@@ -26,7 +26,6 @@ stages:
   - name: extra-modules
     type: includes
     includes:
-      - gh:vanilla-os/dev-image:main:modules/00-basics.yml
       - modules/05-tailscale-repo.yml
       - modules/06-tailscale.yml
       - modules/50-install-debs.yml
