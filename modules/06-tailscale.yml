@@ -1,5 +1,5 @@
 name: tailscale
 type: apt
-source:
-  packages:
-  - tailscale
+sources:
+  - packages:
+    - tailscale
